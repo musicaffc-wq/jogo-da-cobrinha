@@ -92,13 +92,13 @@ canvas {
 }
 
 .touch-btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
     border: 2px solid #444;
     background-color: #222;
     color: white;
-    font-size: 1.5rem;
+    font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
