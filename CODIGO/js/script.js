@@ -189,31 +189,36 @@ document.addEventListener("keydown", ({ key }) => {
     }
 })
 
-let touchStartX = 0
-let touchStartY = 0
+canvas.addEventListener("touchmove", (event) => {
+    event.preventDefault()
+}, { passive: false })
 
-canvas.addEventListener("touchstart", (event) => {
-    touchStartX = event.touches[0].clientX
-    touchStartY = event.touches[0].clientY
-}, { passive: true })
+const setDirection = (newDirection) => {
+    if (newDirection == "right" && direction != "left") direction = "right"
+    if (newDirection == "left" && direction != "right") direction = "left"
+    if (newDirection == "down" && direction != "up") direction = "down"
+    if (newDirection == "up" && direction != "down") direction = "up"
+}
 
-canvas.addEventListener("touchend", (event) => {
-    const touchEndX = event.changedTouches[0].clientX
-    const touchEndY = event.changedTouches[0].clientY
+document.querySelector(".touch-up").addEventListener("touchstart", (e) => {
+    e.preventDefault()
+    setDirection("up")
+}, { passive: false })
 
-    const diffX = touchEndX - touchStartX
-    const diffY = touchEndY - touchStartY
+document.querySelector(".touch-down").addEventListener("touchstart", (e) => {
+    e.preventDefault()
+    setDirection("down")
+}, { passive: false })
 
-    const minSwipe = 20
+document.querySelector(".touch-left").addEventListener("touchstart", (e) => {
+    e.preventDefault()
+    setDirection("left")
+}, { passive: false })
 
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX > minSwipe && direction != "left") direction = "right"
-        else if (diffX < -minSwipe && direction != "right") direction = "left"
-    } else {
-        if (diffY > minSwipe && direction != "up") direction = "down"
-        else if (diffY < -minSwipe && direction != "down") direction = "up"
-    }
-}, { passive: true })
+document.querySelector(".touch-right").addEventListener("touchstart", (e) => {
+    e.preventDefault()
+    setDirection("right")
+}, { passive: false })
 
 buttonPlay.addEventListener("click", () => {
     score.innerText = "00"
