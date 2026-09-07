@@ -166,25 +166,25 @@ const gameLoop = () => {
 
     loopId = setTimeout(() => {
         gameLoop()
-    },700)
+    }, 700)
 }
 
 gameLoop()
 
 document.addEventListener("keydown", ({ key }) => {
-    if (key == "ArrowRight" && direction != "left") {
+    if (key == "ArrowRight") {
         direction = "right"
     }
 
-    if (key == "ArrowLeft" && direction != "right") {
+    if (key == "ArrowLeft") {
         direction = "left"
     }
 
-    if (key == "ArrowDown" && direction != "up") {
+    if (key == "ArrowDown") {
         direction = "down"
     }
 
-    if (key == "ArrowUp" && direction != "down") {
+    if (key == "ArrowUp") {
         direction = "up"
     }
 })
@@ -194,10 +194,7 @@ canvas.addEventListener("touchmove", (event) => {
 }, { passive: false })
 
 const setDirection = (newDirection) => {
-    if (newDirection == "right" && direction != "left") direction = "right"
-    if (newDirection == "left" && direction != "right") direction = "left"
-    if (newDirection == "down" && direction != "up") direction = "down"
-    if (newDirection == "up" && direction != "down") direction = "up"
+    direction = newDirection
 }
 
 document.querySelector(".touch-up").addEventListener("touchstart", (e) => {
